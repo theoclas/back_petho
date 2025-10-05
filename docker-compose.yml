@@ -1,0 +1,22 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: postgres_db
+    restart: always
+    environment:
+      POSTGRES_USER: postgres        # Usuario por defecto
+      POSTGRES_PASSWORD: "1026161053"  # Contraseña del usuario
+      POSTGRES_DB: Petho      # Base de datos inicial
+    ports:
+      - "5432:5432"                # Expone el puerto por defecto de PostgreSQL
+    volumes:
+      - postgres_data:/var/lib/postgresql/data  # Volumen persistente
+    networks:
+      - postgres_network
+
+volumes:
+  postgres_data:                   # Volumen para guardar los datos
+
+networks:
+  postgres_network:
+    driver: bridge
